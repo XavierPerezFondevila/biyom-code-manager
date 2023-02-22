@@ -2,6 +2,7 @@ import * as vscode from "vscode";
 import * as fs from "fs";
 import * as controllerApi from './files/controller';
 import * as internalFilesApi from './files/internalFiles';
+import { repoPath } from "../extension";
 
 let controllerData: any = {};
 
@@ -59,13 +60,13 @@ const controllerPaths = [
   },
 ];
 
-export async function init(path: string) {
-  if (!path.length) {
+export async function init() {
+  if (!repoPath.length) {
     return;
   }
 
   await getInputData();
-  controllerData.repoPath = path;
+  controllerData.repoPath = repoPath;
   if (!validateInputs()) {
     return console.log("esDeFront");
   }
