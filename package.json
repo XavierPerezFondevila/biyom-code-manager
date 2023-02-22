@@ -24,7 +24,7 @@
     "commands": [
       {
         "command": "biyom-code-manager.createInternal",
-        "title": "Hello World"
+        "title": "Create Internal Controller"
       }
     ]
   },
