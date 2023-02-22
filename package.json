@@ -6,7 +6,7 @@
   "description": "Extension for beyond enjoyers",
   "repository": {
     "type": "git",
-    "url": "https://github.com/XavierPerezFondevila/controller-control"
+    "url": "https://github.com/XavierPerezFondevila/biyom-code-manager"
   },
   "icon": "images/appIcon.png",
   "version": "1.0.1",
