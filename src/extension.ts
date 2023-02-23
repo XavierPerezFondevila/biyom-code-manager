@@ -13,7 +13,7 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 
 	const createDocumentsScript = vscode.commands.registerCommand('biyom-code-manager.createDocumentsScript', () => {
-		console.log('aaaaaa');
+		console.log('hadgasyhudgfasd');
 		createScript.init();
 	});
 
