@@ -14,7 +14,6 @@ export const getFilledLanguageData = (languagesList: string[]): any => {
     const filesLanguageDirectory = repoPath + '\\documentTemplates\\src\\' + lang.key.toLowerCase();
     const filenames = fs.readdirSync(filesLanguageDirectory);
     filenames.forEach((fileName: string, index: number) => {
-      console.info(filesLanguageDirectory + '\\' + fileName);
       lcDocuments[fileName.replace('.twig', '')]['contents'][lang.id] = fs.readFileSync(filesLanguageDirectory + '\\' + fileName, "utf8");
     });
   });

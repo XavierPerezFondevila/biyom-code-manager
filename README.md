@@ -6,6 +6,8 @@ This is the "biyom-code-manager" a giga-chad extension intended for saving your 
 
 - To create an internal controller (`Ctrl+Shift+P`) and type `create internal`.
 
+- Create a script that generates the backoffice documents (`Ctrl+Shift+P`) and type `create document script`.
+
 ## Requirements
 
 - Internal controller name must be camel cased.
@@ -15,6 +17,10 @@ This is the "biyom-code-manager" a giga-chad extension intended for saving your 
 None.
 
 ## Release Notes
+
+### 1.0.2
+
+New feature `create document script`
 
 ### 1.0.1
 
