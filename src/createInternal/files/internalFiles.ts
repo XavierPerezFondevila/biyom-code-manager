@@ -20,7 +20,7 @@ function setInternalEnum() {
         value: "",
       },
       {
-        indexQuantity: 2,
+        indexQuantity: 1,
         value: `    public const ${snakeControllerName} = '${controllerData.path.label.toUpperCase()}_INTERNAL_${snakeControllerName.toUpperCase()}';`,
       },
     ];

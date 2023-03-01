@@ -9,7 +9,7 @@ export const availableLanguages = [
   },
   {
     label: "EN",
-    detail: "ES",
+    detail: "EN",
   },
   {
     label: "ES",

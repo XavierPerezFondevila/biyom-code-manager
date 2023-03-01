@@ -1,11 +1,16 @@
 import * as vscode from 'vscode';
 import * as languagesService from './services/languagesService';
 import * as scriptService from './services/scriptService';
+import { repoPath } from "../extension";
 
 let documentLanguages = languagesService.getAvailableLanguages();
 let selectedLanguages: string[] = [];
 
 export async function init() {
+  if (!repoPath.length) {
+    return;
+  }
+
   await getLanguages();
   if (selectedLanguages.length) {
     getScript();

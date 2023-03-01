@@ -10,6 +10,7 @@ This is the "biyom-code-manager" a giga-chad extension intended for saving your 
 
 ## Requirements
 
+- Your VScode workspace must have repo-xx folder.
 - Internal controller name must be camel cased.
 
 ## Known Issues
@@ -18,7 +19,12 @@ None.
 
 ## Release Notes
 
-### 1.0.2
+### 1.1.1
+#### Create internal controller
+- Fix InternalFiles content replacement
+- Add JS and XML Controllers
+
+### 1.1.0
 
 New feature `create document script`
 

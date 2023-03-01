@@ -126,8 +126,7 @@ function setControllerCustomMethodsByType() {
     }
 `;
 	const customMethods: any = {
-		'BaseJsonController': getResponseDataCode,
-		'BaseJsController': getResponseDataCode
+		'BaseJsonController': getResponseDataCode
 	};
 
 	return typeof customMethods[controllerData.type.detail] !== 'undefined' ? customMethods[controllerData.type.detail] : '';

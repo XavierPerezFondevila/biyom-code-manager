@@ -19,6 +19,14 @@ const controllerTypes = [
     label: "PDF controller",
     detail: "BasePdfController",
   },
+  {
+    label: "XML controller",
+    detail: "BaseXmlController",
+  },
+  {
+    label: "JS controller",
+    detail: "BaseJsController",
+  },
 ];
 
 const controllerPaths = [
