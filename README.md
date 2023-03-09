@@ -19,6 +19,8 @@ None.
 
 ## Release Notes
 
+### 1.1.2
+- Rename 'RMA' to 'Refund request' to fix document scripts,
 ### 1.1.1
 #### Create internal controller
 - Fix InternalFiles content replacement
