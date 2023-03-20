@@ -8,6 +8,8 @@ This is the "biyom-code-manager" a giga-chad extension intended for saving your 
 
 - Create a script that generates the backoffice documents (`Ctrl+Shift+P`) and type `create document script`.
 
+- Create a script that imports the backoffice documents (`Ctrl+Shift+P`) and type `import document script`.
+
 ## Requirements
 
 - Your VScode workspace must have repo-xx folder.
