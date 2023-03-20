@@ -3,6 +3,8 @@
 import * as vscode from 'vscode';
 import * as createInternal from './createInternal/main';
 import * as createScript from './createDocumentsScript/main';
+import * as changeLayoutConfiguration from './changeLayoutConfiguration/main';
+
 import * as fs from 'fs';
 const wsPath = vscode.workspace.workspaceFolders;
 export const repoPath = getRepositoryPath();
@@ -13,12 +15,22 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 
 	const createDocumentsScript = vscode.commands.registerCommand('biyom-code-manager.createDocumentsScript', () => {
-		createScript.init();
+		createScript.init('create');
+	});
+
+	const getDocumentsScript = vscode.commands.registerCommand('biyom-code-manager.getDocumentsScript', () => {
+		createScript.init('import');
+	});
+
+	const changeLayout = vscode.commands.registerCommand('biyom-code-manager.changeLayoutConfiguration', () => {
+		changeLayoutConfiguration.init();
 	});
 
 
 	context.subscriptions.push(createInternalController);
 	context.subscriptions.push(createDocumentsScript);
+	context.subscriptions.push(getDocumentsScript);
+	// context.subscriptions.push(changeLayout);
 }
 
 function getRepositoryPath(): string{

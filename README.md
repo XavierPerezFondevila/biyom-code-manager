@@ -19,8 +19,10 @@ None.
 
 ## Release Notes
 
+### 1.2.0
+- New feature `Import Document Script`
 ### 1.1.2
-- Rename 'RMA' to 'Refund request' to fix document scripts,
+- Rename 'RMA' to 'Refund request' to fix document scripts
 ### 1.1.1
 #### Create internal controller
 - Fix InternalFiles content replacement
@@ -28,13 +30,13 @@ None.
 
 ### 1.1.0
 
-New feature `create document script`
+- New feature `create document script`
 
 ### 1.0.1
 
-Adapting JS extension to TS
+- Adapting JS extension to TS
 
-File code snippets formatted in spaces size 4
+- File code snippets formatted in spaces size 4
 
 ### 1.0.0
 

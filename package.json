@@ -27,6 +27,10 @@
       {
         "command": "biyom-code-manager.createDocumentsScript",
         "title": "Create Document Script"
+      },
+      {
+        "command": "biyom-code-manager.getDocumentsScript",
+        "title": "Import Document Script"
       }
     ]
   },
