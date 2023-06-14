@@ -4,6 +4,7 @@ import * as vscode from 'vscode';
 import * as createInternal from './createInternal/main';
 import * as createScript from './createDocumentsScript/main';
 import * as dynamicForms from './importDynamicForms/main';
+import * as dynamicLibraries from './importLibrary/main';
 
 import * as fs from 'fs';
 const wsPath = vscode.workspace.workspaceFolders;
@@ -26,10 +27,15 @@ export function activate(context: vscode.ExtensionContext) {
 		dynamicForms.init();
 	});
 
+	const importLibrary = vscode.commands.registerCommand('biyom-code-manager.importLibrary', () => {
+		dynamicLibraries.init();
+	});
+
 	context.subscriptions.push(createInternalController);
 	context.subscriptions.push(createDocumentsScript);
 	context.subscriptions.push(getDocumentsScript);
 	context.subscriptions.push(importDynamicForms);
+	context.subscriptions.push(importLibrary);
 }
 
 function getRepositoryPath(): string{
