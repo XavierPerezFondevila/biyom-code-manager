@@ -9,7 +9,7 @@
     "url": "https://github.com/XavierPerezFondevila/biyom-code-manager"
   },
   "icon": "images/appIcon.png",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "engines": {
     "vscode": "^1.74.0"
   },
@@ -31,6 +31,10 @@
       {
         "command": "biyom-code-manager.getDocumentsScript",
         "title": "Import Document Script"
+      },
+      {
+        "command": "biyom-code-manager.importDynamicForms",
+        "title": "Import Dynamic Forms"
       }
     ]
   },

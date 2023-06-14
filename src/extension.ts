@@ -3,7 +3,7 @@
 import * as vscode from 'vscode';
 import * as createInternal from './createInternal/main';
 import * as createScript from './createDocumentsScript/main';
-import * as changeLayoutConfiguration from './changeLayoutConfiguration/main';
+import * as dynamicForms from './importDynamicForms/main';
 
 import * as fs from 'fs';
 const wsPath = vscode.workspace.workspaceFolders;
@@ -22,15 +22,14 @@ export function activate(context: vscode.ExtensionContext) {
 		createScript.init('import');
 	});
 
-	const changeLayout = vscode.commands.registerCommand('biyom-code-manager.changeLayoutConfiguration', () => {
-		changeLayoutConfiguration.init();
+	const importDynamicForms = vscode.commands.registerCommand('biyom-code-manager.importDynamicForms', () => {
+		dynamicForms.init();
 	});
-
 
 	context.subscriptions.push(createInternalController);
 	context.subscriptions.push(createDocumentsScript);
 	context.subscriptions.push(getDocumentsScript);
-	// context.subscriptions.push(changeLayout);
+	context.subscriptions.push(importDynamicForms);
 }
 
 function getRepositoryPath(): string{

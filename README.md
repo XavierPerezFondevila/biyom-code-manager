@@ -10,6 +10,8 @@ This is the "biyom-code-manager" a giga-chad extension intended for saving your 
 
 - Create a script that imports the backoffice documents (`Ctrl+Shift+P`) and type `import document script`.
 
+- Create DynamicCustomForms structure (`Ctrl+Shift+P`) and type `import dynamic forms`.
+
 ## Requirements
 
 - Your VScode workspace must have repo-xx folder.
@@ -20,6 +22,9 @@ This is the "biyom-code-manager" a giga-chad extension intended for saving your 
 None.
 
 ## Release Notes
+
+### 1.3.0
+- New feature `Import Dynamic Forms`
 
 ### 1.2.0
 - New feature `Import Document Script`
