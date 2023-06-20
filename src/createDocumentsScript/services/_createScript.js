@@ -1,3 +1,4 @@
+console.clear();
 const localDocuments = ${ JSON.stringify(documentsData)};
 const targetNode = document.querySelector('#windowContainer');
 let config = { childList: true, subtree: true };
@@ -11,11 +12,11 @@ const editDocuments = (documents) => {
     let currentLocalDocument = undefined;
 
     Object.keys(localDocuments).forEach((key) => {
-      if (localDocuments[key].boName.toUpperCase() === documents[templateFilledCounter]?.name.toUpperCase()) {
+      if (localDocuments[key].boName.toUpperCase() === documents[templateFilledCounter]?.name.toUpperCase() 
+        || key.toUpperCase() === documents[templateFilledCounter]?.name.toUpperCase()) {
         currentLocalDocument = localDocuments[key];
       }
     });
-
     if (currentLocalDocument) {
       mutations.forEach((mutation) => {
         if (mutation.target.matches('.ace_editor')) {

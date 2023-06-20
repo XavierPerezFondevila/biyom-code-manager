@@ -1,20 +1,22 @@
 import * as fs from "fs";
-import * as path from 'path';
+import * as pathLib from 'path';
 import axios, { AxiosResponse } from "axios";
 import * as vscode from "vscode";
 import { repoPath } from "../../extension";
-
-const owner = "Trilogi-Developers"; // Replace with the organization name
-const branch = "main"; // Replace with the desired branch name
-const accessToken = vscode.workspace.getConfiguration().get('biyom-code-manager.accessToken'); // Replace with your personal access token
-const availableFolders:string[] = vscode.workspace.getConfiguration().get('biyom-code-manager.availableFolders') ?? ["assets/", "src/", "themes/"];
-
 
 interface GitHubContent {
   name: string;
   path: string;
   type: "file" | "dir";
 }
+
+const owner = "Trilogi-Developers"; // Replace with the organization name
+const branch = "main"; // Replace with the desired branch name
+const accessToken = vscode.workspace.getConfiguration().get('biyom-code-manager.accessToken'); // Replace with your personal access token
+const availableFolders:string[] = vscode.workspace.getConfiguration().get('biyom-code-manager.availableFolders') ?? ["assets/", "src/", "themes/"];
+
+let readmeFileContent: string|undefined = undefined;
+
 
 async function fetchFolderContents(
   repoName: string,
@@ -40,7 +42,7 @@ async function fetchFolderContents(
     // Process files in the current folder
     for (const file of files) {
       // filter the files that only are on availableFolders
-      if (availableFolders.findIndex((folder) => file.path.includes(folder)) !== -1) {
+      if (availableFolders.findIndex((folder) => file.path.includes(folder)) !== -1 || file.name.toLowerCase() === 'readme.md') {
         await fetchFileContents(repoName, file.path);
       }
     }
@@ -71,10 +73,28 @@ async function fetchFileContents(repoName: string, filePath: string): Promise<vo
       "base64"
     ).toString("utf-8");
 
-    writeFile(repoPath + '\\' + filePath, content);
+    if(pathLib.basename(filePath).toLocaleLowerCase() === 'readme.md'){
+      await openReadme(content);
+    }else{
+      writeFile(repoPath + '\\' + filePath, content);
+    }
+
   } catch (error: any) {
     vscode.window.showErrorMessage('Error fetching the file content');
   }
+}
+
+async function openReadme(readmeContent: string){
+  const markdownUri = vscode.Uri.parse('untitled:' + 'Untitled.md');
+  vscode.workspace.openTextDocument(markdownUri).then(document => {
+      const editor = vscode.window.showTextDocument(document);
+      editor.then(editor => {
+        editor.edit(editBuilder => {
+          const start = new vscode.Position(0, 0);
+          editBuilder.insert(start, readmeContent);
+        });
+      });
+    });
 }
 
 export async function fetchRepositoriesWithTopics(
@@ -115,7 +135,7 @@ export async function fetchRepositoryCode(repoName: string): Promise<void> {
 }
 
 function writeFile(filePath: string, content: string): void {
-  const dirname = path.dirname(filePath);
+  const dirname = pathLib.dirname(filePath);
 
   // Create the necessary directories recursively if they don't exist
   if (!fs.existsSync(dirname)) {

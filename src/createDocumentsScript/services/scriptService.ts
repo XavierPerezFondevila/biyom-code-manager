@@ -1,23 +1,23 @@
 export const getCreateScript = (documentsData: any) => `
   console.clear();
-  const localDocuments = ${JSON.stringify(documentsData)};
+  const localDocuments = ${ JSON.stringify(documentsData)};
   const targetNode = document.querySelector('#windowContainer');
   let config = { childList: true, subtree: true };
   let backOfficeDocuments = [];
   let templateFilledCounter = 0;
-  
+
   const editDocuments = (documents) => {
     const editDocumentObserver = new MutationObserver((mutations, observer) => {
       let languagesCounter = 0;
       let lastEditor = undefined;
       let currentLocalDocument = undefined;
-  
+
       Object.keys(localDocuments).forEach((key) => {
-        if (localDocuments[key].boName.toUpperCase() === documents[templateFilledCounter]?.name.toUpperCase()) {
+        if (localDocuments[key].boName.toUpperCase() === documents[templateFilledCounter]?.name.toUpperCase() 
+          || key.toUpperCase() === documents[templateFilledCounter]?.name.toUpperCase()) {
           currentLocalDocument = localDocuments[key];
         }
       });
-  
       if (currentLocalDocument) {
         mutations.forEach((mutation) => {
           if (mutation.target.matches('.ace_editor')) {
@@ -49,15 +49,15 @@ export const getCreateScript = (documentsData: any) => `
                     );
                     observer.disconnect();
                   });
-  
+
                 }
               }
             }
-  
+
           }
         });
       }
-  
+
       if (templateFilledCounter === documents.length) {
         console.log(
           '%cDocument templates were correctly created - Enjoy ✌',
@@ -66,16 +66,16 @@ export const getCreateScript = (documentsData: any) => `
         observer.disconnect();
       }
     });
-  
+
     editDocumentObserver.observe(targetNode, config);
     editDocumentType(documents[templateFilledCounter].templateId, 1);
   };
-  
+
   const saveTemplate = () => {
     return new Promise((resolve, reject) => {
       let saveNodeTarget = document.querySelector('.window.activedWindow .responseMessageTarget');
       let saveConfig = { attributes: true };
-  
+
       const saveDocumentObserver = new MutationObserver((mutations, observer) => {
         mutations.forEach((mutation) => {
           if (!mutation.target.matches('.loadingMessage')) {
@@ -91,13 +91,13 @@ export const getCreateScript = (documentsData: any) => `
           }
         });
       });
-  
+
       saveDocumentObserver.observe(saveNodeTarget, saveConfig);
       document.querySelector('.window.activedWindow .rightButtons input[type="submit"]').click();
-  
+
     });
   };
-  
+
   const openDocumentTypesCallback = (mutationList, observer) => {
     for (const mutation of mutationList) {
       let addedNodes = [...mutation.addedNodes];
@@ -107,17 +107,17 @@ export const getCreateScript = (documentsData: any) => `
           backOfficeDocuments.push({ templateId: documentData?.id, name: documentData?.name });
         }
       } catch (error) {
-  
+
       }
     }
-  
+
     if (backOfficeDocuments.length) {
       observer.disconnect();
       editDocuments(backOfficeDocuments);
     }
-  
+
   };
-  
+
   let openDocumentObserver = new MutationObserver(openDocumentTypesCallback);
   openDocumentObserver.observe(targetNode, config);
   openDocumentTypes();
@@ -143,7 +143,8 @@ export const getImportScript = (documentsData: any, languagesData: any) =>
       let languages = undefined;
   
       Object.keys(localDocuments).forEach((key) => {
-        if (localDocuments[key].boName.toUpperCase() === documents[templateFilledCounter]?.name.toUpperCase()) {
+        if (localDocuments[key].boName.toUpperCase() === documents[templateFilledCounter]?.name.toUpperCase()
+          || key.toUpperCase() === documents[templateFilledCounter]?.name.toUpperCase()) {
           currentLocalDocumentKey = key;
         }
       });

@@ -19,6 +19,15 @@ export async function init() {
     matchOnDetail: true,
   });
 
+  const result = await vscode.window.showQuickPick(['Yes', 'No'], {
+    placeHolder: 'Are you sure you want to override the ' + selectedRepo?.label + ' lib?',
+    canPickMany: false,
+  });
+
+  if(result !== 'Yes'){
+    return;
+  }
+
   if(selectedRepo?.label){
     utils.fetchRepositoryCode(selectedRepo?.label);
   }

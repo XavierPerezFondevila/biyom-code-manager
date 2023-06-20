@@ -19,7 +19,7 @@ This is the "biyom-code-manager" a giga-chad extension intended for saving your 
 
 ## Known Issues
 
-None.
+Some mutation observers may not be cleared at all in `Import Document Script` and `create document script` commands, refresh the page to make sure they are removed :P
 
 ## Release Notes
 

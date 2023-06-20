@@ -16,7 +16,8 @@ const editDocuments = (documents) => {
     let languages = undefined;
 
     Object.keys(localDocuments).forEach((key) => {
-      if (localDocuments[key].boName.toUpperCase() === documents[templateFilledCounter]?.name.toUpperCase()) {
+      if (localDocuments[key].boName.toUpperCase() === documents[templateFilledCounter]?.name.toUpperCase()
+        || key.toUpperCase() === documents[templateFilledCounter]?.name.toUpperCase()) {
         currentLocalDocumentKey = key;
       }
     });

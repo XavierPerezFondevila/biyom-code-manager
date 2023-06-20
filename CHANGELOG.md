@@ -1,9 +1,7 @@
 # Change Log
 
-All notable changes to the "biyom-code-manager" extension will be documented in this file.
+## [1.3.1] - 20-06-2023
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+### Fixed
 
-## [Unreleased]
-
-- Initial release
+- Fixed bug where some "RMA" document templates weren't found
