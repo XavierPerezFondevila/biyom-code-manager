@@ -19,6 +19,24 @@
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
+    "viewsContainers": {
+			"activitybar": [
+				{
+					"id": "package-explorer",
+					"title": "Biyom code manager",
+					"icon": "images/tomatrial.svg"
+				}
+			]
+		},
+		"views": {
+			"package-explorer": [
+				{
+					"id": "extensionDependencies",
+					"name": "Commands sheet",
+					"contextualTitle": "Biyom code manager"
+				}
+			]
+		},
     "commands": [
       {
         "command": "biyom-code-manager.createInternal",
@@ -26,11 +44,13 @@
       },
       {
         "command": "biyom-code-manager.createDocumentsScript",
-        "title": "Create Document Script"
+        "title": "Create Document Script",
+        "argument": "create"
       },
       {
         "command": "biyom-code-manager.getDocumentsScript",
-        "title": "Import Document Script"
+        "title": "Import Document Script",
+        "arguments": "import"
       },
       {
         "command": "biyom-code-manager.importDynamicForms",

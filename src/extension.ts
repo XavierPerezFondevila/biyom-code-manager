@@ -7,6 +7,7 @@ import * as dynamicForms from './importDynamicForms/main';
 import * as dynamicLibraries from './importLibrary/main';
 
 import * as fs from 'fs';
+import { ExtensionDependenciesProvider } from './treeDataProvider/dataProvider';
 const wsPath = vscode.workspace.workspaceFolders;
 export const repoPath = getRepositoryPath();
 
@@ -36,6 +37,12 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(getDocumentsScript);
 	context.subscriptions.push(importDynamicForms);
 	context.subscriptions.push(importLibrary);
+	
+	console.log('hola');
+	vscode.window.registerTreeDataProvider(
+		'extensionDependencies',
+		new ExtensionDependenciesProvider()
+	);
 }
 
 function getRepositoryPath(): string{

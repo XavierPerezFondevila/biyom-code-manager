@@ -9,6 +9,8 @@ export function init(){
     return;
   }
 
+  console.log(isModuleInstalled());
+
   if(isModuleInstalled()){
     return;
   }
