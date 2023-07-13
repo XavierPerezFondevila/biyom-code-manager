@@ -40,25 +40,35 @@
     "commands": [
       {
         "command": "biyom-code-manager.createInternal",
-        "title": "Create Internal Controller"
+        "title": "Create Internal Controller",
+        "description": "Crea un controller PHP",
+        "iconPath": "biyom-code-manager-createInternal.svg"
       },
       {
         "command": "biyom-code-manager.createDocumentsScript",
         "title": "Create Document Script",
-        "argument": "create"
+        "description": "Importar documents de local a LC",
+        "argument": "create",
+        "iconPath": "biyom-code-manager-createDocumentsScript.svg"
       },
       {
         "command": "biyom-code-manager.getDocumentsScript",
-        "title": "Import Document Script",
-        "arguments": "import"
+        "title": "Export Document Script",
+        "description": "Exportar documents del LC en un zip",
+        "arguments": "import",
+        "iconPath": "biyom-code-manager-getDocumentsScript.svg"
       },
       {
         "command": "biyom-code-manager.importDynamicForms",
-        "title": "Import Dynamic Forms"
+        "title": "Import Dynamic Forms",
+        "description": "Afegeix llibreria per crear sendMailForms",
+        "iconPath": "biyom-code-manager-importDynamicForms.svg"
       },
       {
         "command": "biyom-code-manager.importLibrary",
-        "title": "Import Library"
+        "title": "Import Library",
+        "description": "Importa llibreria github trilogi-developers",
+        "iconPath": "github.svg"
       }
     ]
   },

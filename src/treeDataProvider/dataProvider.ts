@@ -46,8 +46,10 @@ export class ExtensionDependenciesProvider
           {
             command: command.command,
             title: command.title,
-            arguments: [command?.argument] 
-          }
+            arguments: [command?.argument],
+          },
+          command?.description,
+          command?.iconPath,
         );
       }
     );
@@ -60,15 +62,13 @@ class Dependency extends vscode.TreeItem {
   constructor(
     public readonly label: string,
     public readonly collapsibleState: vscode.TreeItemCollapsibleState,
-    public readonly command: vscode.Command
+    public readonly command: vscode.Command,
+    public readonly description: string = '',
+    public readonly iconPath: string = '',
   ) {
     super(label, collapsibleState);
-    this.tooltip = this.label;
-    this.description = "";
+    this.tooltip = `${this.label} - ${description}`;
+    this.description = description;
+    this.iconPath = path.join(__filename, '..', '..', 'images', iconPath);
   }
-
-  // iconPath = {
-  //   light: path.join(__filename, '..', '..', 'resources', 'light', 'dependency.svg'),
-  //   dark: path.join(__filename, '..', '..', 'resources', 'dark', 'dependency.svg')
-  // };
 }
