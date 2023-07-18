@@ -24,6 +24,7 @@ export async function init() {
   }
 
   createFiles();
+  vscode.window.showInformationMessage('Dynamic Form successfully imported');
 }
 
 const isModuleInstalled = (): boolean => {

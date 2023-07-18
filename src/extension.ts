@@ -12,33 +12,27 @@ const wsPath = vscode.workspace.workspaceFolders;
 export const repoPath = getRepositoryPath();
 
 export function activate(context: vscode.ExtensionContext) {
-	const createInternalController = vscode.commands.registerCommand('biyom-code-manager.createInternal', () => {
-		createInternal.init();
-	});
 
-	const createDocumentsScript = vscode.commands.registerCommand('biyom-code-manager.createDocumentsScript', () => {
-		createScript.init('create');
-	});
-
-	const getDocumentsScript = vscode.commands.registerCommand('biyom-code-manager.getDocumentsScript', () => {
-		createScript.init('import');
-	});
-
-	const importDynamicForms = vscode.commands.registerCommand('biyom-code-manager.importDynamicForms', () => {
-		dynamicForms.init();
-	});
-
-	const importLibrary = vscode.commands.registerCommand('biyom-code-manager.importLibrary', () => {
-		dynamicLibraries.init();
-	});
-
-	context.subscriptions.push(createInternalController);
-	context.subscriptions.push(createDocumentsScript);
-	context.subscriptions.push(getDocumentsScript);
-	context.subscriptions.push(importDynamicForms);
-	context.subscriptions.push(importLibrary);
+	const contextSubscriptions = [
+		vscode.commands.registerCommand('biyom-code-manager.createInternal', () => {
+			createInternal.init();
+		}),
+		vscode.commands.registerCommand('biyom-code-manager.createDocumentsScript', () => {
+			createScript.init('create');
+		}),
+		vscode.commands.registerCommand('biyom-code-manager.getDocumentsScript', () => {
+			createScript.init('import');
+		}),
+		vscode.commands.registerCommand('biyom-code-manager.importDynamicForms', () => {
+			dynamicForms.init();
+		}),
+		vscode.commands.registerCommand('biyom-code-manager.importLibrary', () => {
+			dynamicLibraries.init();
+		})
+	];
 	
-	console.log('hola');
+	contextSubscriptions.forEach((subscription)=> context.subscriptions.push(subscription));
+	
 	vscode.window.registerTreeDataProvider(
 		'extensionDependencies',
 		new ExtensionDependenciesProvider()

@@ -23,21 +23,10 @@ export class ExtensionDependenciesProvider
     return Promise.resolve(this.getTreeDependencies(packageJson));
   }
 
-  // Handle the click action
-  handleClick(element: Dependency) {
-    const packageJson = vscode.extensions.getExtension(
-      "xaviperez.biyom-code-manager"
-    )?.packageJSON;
-    const command = packageJson.contributes.commands.filter((item: any) => {
-      item.title === element.label;
-    });
-  }
-
   /**
    * Given the path to package.json, read all its dependencies and devDependencies.
    */
   private getTreeDependencies(packageJson: any): Dependency[] {
-    console.log(packageJson.contributes.commands);
     const dependencies = packageJson.contributes.commands.map(
       (command: any) => {
         return new Dependency(

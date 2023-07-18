@@ -12,16 +12,26 @@ This is the "biyom-code-manager" a giga-chad extension intended for saving your 
 
 - Create DynamicCustomForms structure (`Ctrl+Shift+P`) and type `import dynamic forms`.
 
+- Import any library in TrilogiDev git  (`Ctrl+Shift+P`) and type `import library`.
+
 ## Requirements
 
 - Your VScode workspace must have repo-xx folder.
 - Internal controller name must be camel cased.
+-
 
 ## Known Issues
 
 Some mutation observers may not be cleared at all in `Import Document Script` and `create document script` commands, refresh the page to make sure they are removed :P
 
 ## Release Notes
+
+### 1.5.0
+- Add auxiliar tab for more user friendly extension commands use. 
+
+### 1.4.0
+- New feature `import library` 
+- Fix `Import Document Script` and code updates 
 
 ### 1.3.0
 - New feature `Import Dynamic Forms`
