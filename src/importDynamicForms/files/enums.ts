@@ -2,9 +2,9 @@ const customFormPhp = `<?php
 
 declare(strict_types=1);
 
-namespace SITE\Enums\DynamicCustomForms;
+namespace SITE\\Enums\\DynamicCustomForms;
 
-use SDK\Core\Enums\Enum;
+use SDK\\Core\\Enums\\Enum;
 
 /**
  * This is the CustomForm enumeration class.
@@ -47,9 +47,9 @@ const customFormItemPhp = `<?php
 
 declare(strict_types=1);
 
-namespace SITE\Enums\DynamicCustomForms;
+namespace SITE\\Enums\\DynamicCustomForms;
 
-use SDK\Core\Enums\Enum;
+use SDK\\Core\\Enums\\Enum;
 
 /**
  * This is the CustomFormItem enumeration class.
@@ -90,16 +90,16 @@ const customMailParametersPhp = `<?php
 
 declare(strict_types=1);
 
-namespace SITE\Enums\DynamicCustomForms;
+namespace SITE\\Enums\\DynamicCustomForms;
 
-use SDK\Core\Enums\Enum;
+use SDK\\Core\\Enums\\Enum;
 
 /**
  * This is the CustomMailParameters enumeration class.
  *
  * @see Enum
  *
- * @package SITE/Enums/DynamicCustomFormds
+ * @package SITE/Enums/DynamicCustomForms
  */
 abstract class CustomMailParameters extends Enum {
 

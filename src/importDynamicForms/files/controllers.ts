@@ -521,7 +521,7 @@ export const controllers = [
     content: dynamicCustomMail
   },
   {
-    name: 'DynamicFromItem.php',
+    name: 'DynamicFormItem.php',
     path: '\\src\\Core\\Controllers\\DynamicCustomForms',
     content: dynamicFromItem
   },
@@ -530,5 +530,4 @@ export const controllers = [
     path: '\\src\\Controllers\\Resources\\Internal',
     content: sendMailController
   },
-
 ];

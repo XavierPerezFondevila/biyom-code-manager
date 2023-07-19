@@ -26,6 +26,9 @@ Some mutation observers may not be cleared at all in `Import Document Script` an
 
 ## Release Notes
 
+### 1.5.1
+- Fix import dynamic forms bugs. 
+
 ### 1.5.0
 - Add auxiliar tab for more user friendly extension commands use. 
 
