@@ -18,7 +18,11 @@ This is the "biyom-code-manager" a giga-chad extension intended for saving your 
 
 - Your VScode workspace must have repo-xx folder.
 - Internal controller name must be camel cased.
--
+- Your `settings.json` file must have these config variables:
+  - `biyom-code-manager.accessToken`,
+  - `biyom-code-manager.availableFolders`,
+  - `biyom-code-manager.topics`,
+  ![settings](https://github.com/XavierPerezFondevila/biyom-code-manager/images/biyom-code-manager-settings.png)
 
 ## Known Issues
 
@@ -27,7 +31,7 @@ Some mutation observers may not be cleared at all in `Import Document Script` an
 ## Release Notes
 
 ### 1.5.1
-- Fix import dynamic forms bugs. 
+- Fix `import dynamic forms` bugs. 
 
 ### 1.5.0
 - Add auxiliar tab for more user friendly extension commands use. 
