@@ -1,5 +1,9 @@
 # Change Log
 
+## [1.5.2] - 10-08-2023
+
+- New action "Check SITE LanguageLabels status"
+
 ## [1.5.0] - 18-07-2023
 
 ### Added

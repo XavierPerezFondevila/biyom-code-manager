@@ -5,11 +5,13 @@ import * as createInternal from './createInternal/main';
 import * as createScript from './createDocumentsScript/main';
 import * as dynamicForms from './importDynamicForms/main';
 import * as dynamicLibraries from './importLibrary/main';
+import * as checkLanguageLabels from './checkLanguageLabels/main';
 
 import * as fs from 'fs';
 import { ExtensionDependenciesProvider } from './treeDataProvider/dataProvider';
 const wsPath = vscode.workspace.workspaceFolders;
 export const repoPath = getRepositoryPath();
+export const fwkPath = getFWKPath();
 
 export function activate(context: vscode.ExtensionContext) {
 
@@ -28,18 +30,21 @@ export function activate(context: vscode.ExtensionContext) {
 		}),
 		vscode.commands.registerCommand('biyom-code-manager.importLibrary', () => {
 			dynamicLibraries.init();
+		}),
+		vscode.commands.registerCommand('biyom-code-manager.checkLanguageLabels', () => {
+			checkLanguageLabels.init();
 		})
 	];
-	
-	contextSubscriptions.forEach((subscription)=> context.subscriptions.push(subscription));
-	
+
+	contextSubscriptions.forEach((subscription) => context.subscriptions.push(subscription));
+
 	vscode.window.registerTreeDataProvider(
 		'extensionDependencies',
 		new ExtensionDependenciesProvider()
 	);
 }
 
-function getRepositoryPath(): string{
+function getRepositoryPath(): string {
 	if (!wsPath?.length) {
 		vscode.window.showInformationMessage('Repository directory not found in workspace!');
 		return '';
@@ -47,11 +52,25 @@ function getRepositoryPath(): string{
 	let repoDirectoryName = fs.readdirSync(wsPath[0].uri.fsPath).filter(dirName => dirName.includes('repo-'));
 	if (!repoDirectoryName.length) {
 		vscode.window.showInformationMessage('Repository directory not found in workspace!');
-		return ''; 
+		return '';
 	}
 
 	return wsPath[0].uri.fsPath + '\\' + repoDirectoryName[0];
 }
 
+function getFWKPath(): string {
+	if (!wsPath?.length) {
+		vscode.window.showInformationMessage('FWK directory not found in workspace!');
+		return '';
+	}
+	let frameworkDirectoryName = fs.readdirSync(wsPath[0].uri.fsPath).filter(dirName => dirName.includes('framework-php'));
+	if (!frameworkDirectoryName.length) {
+		vscode.window.showInformationMessage('FWK directory not found in workspace!');
+		return '';
+	}
+
+	return wsPath[0].uri.fsPath + '\\' + frameworkDirectoryName[0];
+}
+
 // This method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() { }

@@ -9,7 +9,7 @@
     "url": "https://github.com/XavierPerezFondevila/biyom-code-manager"
   },
   "icon": "images/appIcon.png",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "engines": {
     "vscode": "^1.74.0"
   },
@@ -69,6 +69,12 @@
         "title": "Import Library",
         "description": "Importa llibreria github trilogi-developers",
         "iconPath": "github.svg"
+      },
+      {
+        "command": "biyom-code-manager.checkLanguageLabels",
+        "title": "Check SITE LanguageLabels status",
+        "description": "Check missing or deprecated SITE LanguageLabels compared FWK",
+        "iconPath": "translate.svg"
       }
     ]
   },

@@ -32,6 +32,9 @@ Some mutation observers may not be cleared at all in `Import Document Script` an
 
 ## Release Notes
 
+### 1.5.2
+- New action "Check SITE LanguageLabels status"
+
 ### 1.5.1
 - Fix `import dynamic forms` bugs. 
 
