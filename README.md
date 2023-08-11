@@ -14,6 +14,8 @@ This is the "biyom-code-manager" a giga-chad extension intended for saving your 
 
 - Import any library in TrilogiDev git  (`Ctrl+Shift+P`) and type `import library`.
 
+- Check missing or deprecated SITE LanguageLabels compared FWK (`Ctrl+Shift+P`) and type `checkLanguageLabels`.
+
 ## Requirements
 
 - Your VScode workspace must have repo-xx folder.
