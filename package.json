@@ -75,6 +75,12 @@
         "title": "Check SITE LanguageLabels status",
         "description": "Check missing or deprecated SITE LanguageLabels compared FWK",
         "iconPath": "translate.svg"
+      },
+      {
+        "command": "biyom-code-manager.createMailsScript",
+        "title": "Create LC mails script",
+        "description": "Create a script to import mails in LC",
+        "iconPath": "translate.svg"
       }
     ]
   },

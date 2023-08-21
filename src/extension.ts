@@ -6,6 +6,7 @@ import * as createScript from './createDocumentsScript/main';
 import * as dynamicForms from './importDynamicForms/main';
 import * as dynamicLibraries from './importLibrary/main';
 import * as checkLanguageLabels from './checkLanguageLabels/main';
+import * as createMailsScript from './createMailsScript/main';
 
 import * as fs from 'fs';
 import { ExtensionDependenciesProvider } from './treeDataProvider/dataProvider';
@@ -33,6 +34,9 @@ export function activate(context: vscode.ExtensionContext) {
 		}),
 		vscode.commands.registerCommand('biyom-code-manager.checkLanguageLabels', () => {
 			checkLanguageLabels.init();
+		}),
+		vscode.commands.registerCommand('biyom-code-manager.createMailsScript', () => {
+			createMailsScript.init();
 		})
 	];
 
