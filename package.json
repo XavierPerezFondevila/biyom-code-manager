@@ -79,8 +79,8 @@
       {
         "command": "biyom-code-manager.createMailsScript",
         "title": "Create LC mails script",
-        "description": "Create a script to import mails in LC",
-        "iconPath": "translate.svg"
+        "description": "Create a script to import github mails templates in LC",
+        "iconPath": "email.svg"
       }
     ]
   },

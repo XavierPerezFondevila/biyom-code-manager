@@ -1,5 +1,9 @@
 # Change Log
 
+## [1.5.3] - 22-08-2023
+
+- New action "Create LC mails script"
+
 ## [1.5.2] - 10-08-2023
 
 - New action "Check SITE LanguageLabels status"

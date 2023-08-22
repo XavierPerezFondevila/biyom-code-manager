@@ -24,6 +24,7 @@ This is the "biyom-code-manager" a giga-chad extension intended for saving your 
   - `biyom-code-manager.accessToken`
   - `biyom-code-manager.availableFolders`
   - `biyom-code-manager.topics`
+  - `biyom-code-manager.mailId`
  
     
   ![settings](https://github.com/XavierPerezFondevila/biyom-code-manager/blob/master/images/biyom-code-manager-settings.png)
@@ -33,6 +34,9 @@ This is the "biyom-code-manager" a giga-chad extension intended for saving your 
 Some mutation observers may not be cleared at all in `Import Document Script` and `create document script` commands, refresh the page to make sure they are removed :P
 
 ## Release Notes
+
+### 1.5.3
+- New action "Create LC mails script"
 
 ### 1.5.2
 - New action "Check SITE LanguageLabels status"
