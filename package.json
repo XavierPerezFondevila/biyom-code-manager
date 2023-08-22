@@ -9,7 +9,7 @@
     "url": "https://github.com/XavierPerezFondevila/biyom-code-manager"
   },
   "icon": "images/appIcon.png",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "engines": {
     "vscode": "^1.74.0"
   },
@@ -20,23 +20,23 @@
   "main": "./dist/extension.js",
   "contributes": {
     "viewsContainers": {
-			"activitybar": [
-				{
-					"id": "package-explorer",
-					"title": "Biyom code manager",
-					"icon": "images/tomatrial.svg"
-				}
-			]
-		},
-		"views": {
-			"package-explorer": [
-				{
-					"id": "extensionDependencies",
-					"name": "Commands sheet",
-					"contextualTitle": "Biyom code manager"
-				}
-			]
-		},
+      "activitybar": [
+        {
+          "id": "package-explorer",
+          "title": "Biyom code manager",
+          "icon": "images/tomatrial.svg"
+        }
+      ]
+    },
+    "views": {
+      "package-explorer": [
+        {
+          "id": "extensionDependencies",
+          "name": "Commands sheet",
+          "contextualTitle": "Biyom code manager"
+        }
+      ]
+    },
     "commands": [
       {
         "command": "biyom-code-manager.createInternal",
