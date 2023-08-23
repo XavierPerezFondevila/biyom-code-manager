@@ -35,6 +35,9 @@ Some mutation observers may not be cleared at all in `Import Document Script` an
 
 ## Release Notes
 
+### 1.5.4
+- New tree view organization
+
 ### 1.5.3
 - New action "Create LC mails script"
 

@@ -1,5 +1,9 @@
 # Change Log
 
+## [1.5.4] - 23-08-2023
+
+- New tree view organization
+
 ## [1.5.3] - 22-08-2023
 
 - New action "Create LC mails script"
