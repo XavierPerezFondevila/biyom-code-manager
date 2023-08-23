@@ -9,7 +9,7 @@ import * as checkLanguageLabels from './checkLanguageLabels/main';
 import * as createMailsScript from './createMailsScript/main';
 
 import * as fs from 'fs';
-import { ExtensionDependenciesProvider } from './treeDataProvider/dataProvider';
+import { BeyomActionsProvider} from './treeDataProvider/dataProvider';
 const wsPath = vscode.workspace.workspaceFolders;
 export const repoPath = getRepositoryPath();
 export const fwkPath = getFWKPath();
@@ -42,9 +42,17 @@ export function activate(context: vscode.ExtensionContext) {
 
 	contextSubscriptions.forEach((subscription) => context.subscriptions.push(subscription));
 
-	vscode.window.registerTreeDataProvider(
-		'extensionDependencies',
-		new ExtensionDependenciesProvider()
+	const packageJson = vscode.extensions.getExtension(
+		"xaviperez.biyom-code-manager"
+	)?.packageJSON;
+
+	packageJson.contributes.views.biyomActions.forEach(
+		(view: any) => {
+			vscode.window.registerTreeDataProvider(
+				view.id,
+				new BeyomActionsProvider(view.id)
+			);
+		}
 	);
 }
 
