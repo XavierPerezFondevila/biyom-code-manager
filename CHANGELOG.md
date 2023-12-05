@@ -1,5 +1,9 @@
 # Change Log
 
+## [1.5.5] - 05-12-2023
+
+- Fix LC mail not found tab error
+
 ## [1.5.4] - 23-08-2023
 
 - New tree view organization

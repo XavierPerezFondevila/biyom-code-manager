@@ -35,6 +35,9 @@ Some mutation observers may not be cleared at all in `Import Document Script` an
 
 ## Release Notes
 
+### 1.5.5
+- Fix LC mail not found tab error
+
 ### 1.5.4
 - New tree view organization
 
