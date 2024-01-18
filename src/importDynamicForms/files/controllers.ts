@@ -15,7 +15,7 @@ use SITE\\Enums\\LanguageLabels;
  * This is the DynamicCustomForms class. 
  * It contains custom form fields based on array parameters and the logic to transform those fields into html inputs
  *
- * @version 1.0.0
+ * @version 1.0.1
  * @author xaviperez
  * 
  * @package SITE\\Core\\Controllers\\DynamicCustomForms
@@ -23,14 +23,14 @@ use SITE\\Enums\\LanguageLabels;
 class DynamicCustomForms {
     private const CUSTOM_FORMS = [
         // 'exampleForm' => [
-            // CustomForm::TYPE => 'exampleForm',
-            // CustomForm::ITEMS => [
-                // Parameters::NAME => [CustomForm::INPUT => CustomForm::INPUT_TEXT, CustomFormItem::SET_LABEL_FOR => LanguageLabels::NAME, CustomFormItem::SET_REQUIRED => true],
-                // Parameters::LAST_NAME => [CustomForm::INPUT => CustomForm::INPUT_TEXT, CustomFormItem::SET_LABEL_FOR => LanguageLabels::LAST_NAME, CustomFormItem::SET_REQUIRED => true],
-                // Parameters::EMAIL => [CustomForm::INPUT => CustomForm::INPUT_TEXT, CustomFormItem::SET_LABEL_FOR => LanguageLabels::EMAIL, CustomFormItem::SET_REQUIRED => true],
-                // Parameters::ADDRESS => [CustomForm::INPUT => CustomForm::INPUT_TEXT, CustomFormItem::SET_LABEL_FOR => LanguageLabels::ADDRESS, CustomFormItem::SET_REQUIRED => true],
-                // ]
-            // ],
+        //     CustomForm::TYPE => 'exampleForm',
+        //     CustomForm::ITEMS => [
+        //         Parameters::NAME => [CustomForm::INPUT => CustomForm::INPUT_TEXT, CustomFormItem::SET_LABEL_FOR => LanguageLabels::NAME, CustomFormItem::SET_REQUIRED => true],
+        //         Parameters::LAST_NAME => [CustomForm::INPUT => CustomForm::INPUT_TEXT, CustomFormItem::SET_LABEL_FOR => LanguageLabels::LAST_NAME, CustomFormItem::SET_REQUIRED => true],
+        //         Parameters::EMAIL => [CustomForm::INPUT => CustomForm::INPUT_TEXT, CustomFormItem::SET_LABEL_FOR => LanguageLabels::EMAIL, CustomFormItem::SET_REQUIRED => true],
+        //         Parameters::ADDRESS => [CustomForm::INPUT => CustomForm::INPUT_TEXT, CustomFormItem::SET_LABEL_FOR => LanguageLabels::ADDRESS, CustomFormItem::SET_REQUIRED => true],
+        //     ]
+        // ],
     ];
 
     private array $formFields = [];
@@ -88,7 +88,7 @@ use SITE\\Enums\\LanguageLabels;
 /**
  * This is the DynamicCustomMail class. It contains the logic for creating the custom mail structure based on array parameters.
  *
- * @version 1.0.0
+ * @version 1.0.1
  * @author xaviperez
  *
  * @package SITE\\Core\\Controllers\\DynamicCustomForms
@@ -109,12 +109,12 @@ class DynamicCustomMail {
      */
     private const CUSTOM_MAILS = [
         // "exampleForm" => [
-            // CustomMailParameters::TO_EMAIL => 'xavier.perez@trilogi.com',
-            // CustomMailParameters::SUBJECT => LanguageLabels::BUY_BUNDLE_TITLE,
-            // CustomMailParameters::DYNAMIC_TO_EMAIL => [
-                // CustomMailParameters::TO_EMAIL_PARAMETER => 'selectMotives',
-                // CustomMailParameters::TO_EMAIL_ENUM_CLASS_PARAMETER => Mails::class
-            // ]
+        //     CustomMailParameters::TO_EMAIL => 'client.email.destinatario@empresa.com',
+        //     CustomMailParameters::SUBJECT => LanguageLabels::BUY_BUNDLE_TITLE,
+        //     CustomMailParameters::DYNAMIC_TO_EMAIL => [
+        //         CustomMailParameters::TO_EMAIL_PARAMETER => 'selectMotives',
+        //         CustomMailParameters::TO_EMAIL_ENUM_CLASS_PARAMETER => Mails::class
+        //     ]
         // ],
     ];
 
@@ -157,6 +157,15 @@ class DynamicCustomMail {
      */
     public function getMailTo(): string {
         return $this->mailTo;
+    }
+
+    /**
+     * Returns current mail parameter
+     *
+     * @return string
+     */
+    public function getCurrentMail(): string {
+        return $this->currentMail;
     }
 
     /**
@@ -236,7 +245,7 @@ class DynamicCustomMail {
 
         if ($this->mailLogo) {
             // email logo path has to be the same as emilio generator!
-            $mailLogo = Application::getInstance()->getEcommerceSettings()->getGeneralSettings()->getCdnImages() . '/email-logo.png';
+            $mailLogo = Application::getInstance()->getEcommerceSettings()->getGeneralSettings()->getCdnImages() . '/logoemails.jpg';
             $mailBody .= '<caption style="margin-bottom: 100px;"><img src="' . $mailLogo . '" width=' . self::LOGO_WIDTH . ' /></caption>';
         }
 
@@ -285,8 +294,10 @@ namespace SITE\\Core\\Controllers\\DynamicCustomForms;
 use FWK\\Core\\Exceptions\\CommerceException;
 use FWK\\Core\\Form\\Elements\\Element;
 use FWK\\Core\\Form\\Elements\\Inputs\\InputCheckbox;
+use FWK\\Core\\Form\\Elements\\Inputs\\InputEmail;
 use FWK\\Core\\Form\\Elements\\Inputs\\InputFile;
 use FWK\\Core\\Form\\Elements\\Inputs\\InputHidden;
+use FWK\\Core\\Form\\Elements\\Inputs\\InputNumber;
 use FWK\\Core\\Form\\Elements\\Inputs\\InputRadio;
 use FWK\\Core\\Form\\Elements\\Inputs\\InputText;
 use FWK\\Core\\Form\\Elements\\Option;
@@ -302,7 +313,7 @@ use SITE\\Enums\\LanguageLabels;
 /**
  * This is the DynamicFormItem class.
  *
- * @version 1.0.0
+ * @version 1.0.1
  * @author xaviperez
  * 
  * @package SITE\\Core\\Controllers\\DynamicCustomForms
@@ -411,6 +422,12 @@ class DynamicFormItem {
             case CustomForm::INPUT_TEXT:
                 $this->formElement = new InputText();
                 break;
+            case CustomForm::INPUT_NUMBER:
+                $this->formElement = new InputNumber();
+                break;
+            case CustomForm::INPUT_EMAIL:
+                $this->formElement = new InputEmail();
+                break;
             case CustomForm::INPUT_RADIO:
                 $this->formElement = new InputRadio($this->getRadioOptions((new \\ReflectionClass($this->config[CustomForm::RADIO_OPTIONS]))->getConstants()));
                 break;
@@ -454,6 +471,7 @@ use FWK\\Controllers\\Resources\\Internal\\SendMailController as FWKSendMailCont
 use SDK\\Core\\Resources\\Environment;
 use SDK\\Dtos\\Common\\Route;
 use SITE\\Core\\Controllers\\DynamicCustomForms\\DynamicCustomMail;
+use SITE\\Enums\\LanguageLabels;
 
 /**
  * This is the Related Items controller.
@@ -465,46 +483,51 @@ use SITE\\Core\\Controllers\\DynamicCustomForms\\DynamicCustomMail;
  */
 class SendMailController extends FWKSendMailController {
 
-  private ?DynamicCustomMail $dynamicCustomMails = null;
+    private ?DynamicCustomMail $dynamicCustomMails = null;
 
-  function __construct(Route $route) {
-    parent::__construct($route);
-    $this->dynamicCustomMails = new DynamicCustomMail($this->getRequestParams());
-  }
-  
-  protected function getTo(): string {
-    if (Environment::get('DEVEL')) {
-      return 'your.email@trilogi.com';
+    function __construct(Route $route) {
+        parent::__construct($route);
+        $this->dynamicCustomMails = new DynamicCustomMail($this->getRequestParams());
+
+        // Set custom error/succes messages by current mail id
+        // if ($this->dynamicCustomMails->getCurrentMail() === 'budgetRequestForm') {
+        //     $this->responseMessage = $this->language->getLabelValue(LanguageLabels::SEND_MAIL_SUCCESS_BUDGET_FORM, $this->responseMessage);
+        //     $this->responseMessageError = $this->language->getLabelValue(LanguageLabels::SEND_MAIL_ERROR_BUDGET_FORM, $this->responseMessageError);
+        // }
     }
-    
-    return $this->dynamicCustomMails->getMailTo();
-    
-  }
 
-  protected function getSubject(): string {
-    return $this->dynamicCustomMails->getMailSubject();
-  }
+    protected function getTo(): string {
+        if (Environment::get('DEVEL')) {
+            return 'your.email@trilogi.com';
+        }
 
-  protected function getBody(): string {
-    $this->dynamicCustomMails->setMailLogo(true);
-    return $this->dynamicCustomMails->getMailBody();
-  }
+        return $this->dynamicCustomMails->getMailTo();
+    }
 
-  /** 
-   * 
-   * {@inheritDoc}
-   * 
-   * @see \\FWK\\Core\\Controllers\\Controller::initializeAppliedParameters()
-   */
-  protected function initializeAppliedParameters(): void {
-    parent::initializeAppliedParameters();
+    protected function getSubject(): string {
+        return $this->dynamicCustomMails->getMailSubject();
+    }
 
-    // true o false para habilitar o deshabilitar el uso de stripTags a nivel de todos los parámetros del ParametersGroup
-    $this->customFormSendMailParametersGroup->setFormattedDataOutputWithStripTags(false);
+    protected function getBody(): string {
+        $this->dynamicCustomMails->setMailLogo(true);
+        return $this->dynamicCustomMails->getMailBody();
+    }
 
-    // Si el anterior está a true, se le puede decir que no ejecute el stripTags sobre un "array" de parámetros del ParametersGroup
-    //$this->customFormSendMailParametersGroup->setFormattedDataOutputWithStripTagsExceptions([Parameters::BODY]);
-  } 
+    /** 
+     * 
+     * {@inheritDoc}
+     * 
+     * @see \\FWK\\Core\\Controllers\\Controller::initializeAppliedParameters()
+     */
+    protected function initializeAppliedParameters(): void {
+        parent::initializeAppliedParameters();
+
+        // true o false para habilitar o deshabilitar el uso de stripTags a nivel de todos los parámetros del ParametersGroup
+        $this->customFormSendMailParametersGroup->setFormattedDataOutputWithStripTags(false);
+
+        // Si el anterior está a true, se le puede decir que no ejecute el stripTags sobre un "array" de parámetros del ParametersGroup
+        // $this->customFormSendMailParametersGroup->setFormattedDataOutputWithStripTagsExceptions([Parameters::BODY]);
+    }
 }
 `;
 

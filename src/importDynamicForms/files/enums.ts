@@ -16,21 +16,25 @@ use SDK\\Core\\Enums\\Enum;
 abstract class CustomForm extends Enum {
 
     public const TYPE = 'type';
-    
+
     public const ITEMS = 'items';
 
     public const INPUT = 'input';
-    
+
     public const INPUT_TEXT = 'inputText';
-    
+
+    public const INPUT_NUMBER = 'inputNumber';
+
+    public const INPUT_EMAIL = 'inputEmail';
+
     public const INPUT_CHECKBOX = 'inputCheckbox';
-    
+
     public const INPUT_HIDDEN = 'inputHidden';
-    
+
     public const INPUT_ATTACHMENT = 'inputAttachment';
-    
+
     public const SELECTOR = 'selector';
-    
+
     public const SELECTOR_OPTIONS = 'selectorOptions';
 
     public const INPUT_RADIO = 'inputRadio';
@@ -117,19 +121,19 @@ abstract class CustomMailParameters extends Enum {
 `;
 
 export const enums = [
- {
-  name: 'CustomForm.php',
-  path: '\\src\\Enums\\DynamicCustomForms',
-  content: customFormPhp
- },
- {
-  name: 'CustomFormItem.php',
-  path: '\\src\\Enums\\DynamicCustomForms',
-  content: customFormItemPhp
- },
- {
-  name: 'CustomMailParameters.php',
-  path: '\\src\\Enums\\DynamicCustomForms',
-  content: customMailParametersPhp
- },
+  {
+    name: 'CustomForm.php',
+    path: '\\src\\Enums\\DynamicCustomForms',
+    content: customFormPhp
+  },
+  {
+    name: 'CustomFormItem.php',
+    path: '\\src\\Enums\\DynamicCustomForms',
+    content: customFormItemPhp
+  },
+  {
+    name: 'CustomMailParameters.php',
+    path: '\\src\\Enums\\DynamicCustomForms',
+    content: customMailParametersPhp
+  },
 ];
