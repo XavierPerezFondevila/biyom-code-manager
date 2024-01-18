@@ -11,7 +11,7 @@ use SDK\\Core\\Enums\\Enum;
  *
  * @see Enum
  *
- * @package SITE/Enums/DynamicModules
+ * @package SITE/Enums/DynamicCustomForms
  */
 abstract class CustomForm extends Enum {
 
@@ -107,16 +107,15 @@ use SDK\\Core\\Enums\\Enum;
  */
 abstract class CustomMailParameters extends Enum {
 
-  public const TO_EMAIL = 'toEmail';
+    public const TO_EMAIL = 'toEmail';
 
-  public const SUBJECT = 'subject';
+    public const SUBJECT = 'subject';
 
-  public const DYNAMIC_TO_EMAIL = 'dynamicToEmail';
+    public const DYNAMIC_TO_EMAIL = 'dynamicToEmail';
 
-  public const TO_EMAIL_PARAMETER = 'toEmailParameter';
+    public const TO_EMAIL_PARAMETER = 'toEmailParameter';
 
-  public const TO_EMAIL_ENUM_CLASS_PARAMETER = 'toEmailEnumClassParameter';
-
+    public const TO_EMAIL_ENUM_CLASS_PARAMETER = 'toEmailEnumClassParameter';
 }
 `;
 
