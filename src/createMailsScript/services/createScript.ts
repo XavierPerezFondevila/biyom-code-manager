@@ -81,7 +81,7 @@ export const getMailsScript = (mailsData: any) => `
             if (languages && mailType) {
               languages.forEach((lang, index) => {
                 if (backOfficeMails[lang]) {
-                  fillMail(backOfficeMails[lang], mailType, index + 1);
+                  fillMail(backOfficeMails[lang], currentEmail.id, index + 1);
                 }
               });
               document
@@ -144,7 +144,7 @@ export const getMailsScript = (mailsData: any) => `
         editMailType(currentEmail.id, 0, 0, 0);
       } else {
         console.log(
-          "%cVScode Emilio Generator ☕\nEnjoy! 🌼",
+          "%cVScode Emilio Generator ☕ \\n Enjoy! 🌼",
           "font-size: 18px; font-weight: bold; padding-top: 16px; padding-bottom: 16px;"
         );
         observer.disconnect();

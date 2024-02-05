@@ -35,6 +35,10 @@ Some mutation observers may not be cleared at all in `Import Document Script` an
 
 ## Release Notes
 
+## [1.5.7] - 05-02-2024
+- Fix Mails script generation
+- Update dynamic forms (v1.0.1)
+
 ### 1.5.5
 - Fix LC mail not found tab error
 
