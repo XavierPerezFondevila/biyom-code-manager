@@ -1,6 +1,6 @@
 # Change Log
 
-## [1.5.7] - 05-02-2024
+## [1.5.6] - 05-02-2024
 
 - Fix Mails script generation
 - Update dynamic forms (v1.0.1)
