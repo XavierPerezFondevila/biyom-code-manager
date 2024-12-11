@@ -126,6 +126,8 @@ class DynamicCustomMail {
 
     private ?string $mailTo = null;
 
+    private array $cc = [];
+
     private string $mailSubject = '';
 
     private array $mailParameters = [];
@@ -167,6 +169,15 @@ class DynamicCustomMail {
     public function getCurrentMail(): string {
         return $this->currentMail;
     }
+    
+    /**
+     * Get the recipient email address for the mail cc.
+     *
+     * @return array The cc email addresses.
+     */
+    public function getCc(): array {
+        return $this->cc;
+    }
 
     /**
      * Get the subject of the mail.
@@ -206,7 +217,17 @@ class DynamicCustomMail {
             if (!empty($dynamicToEmail)) {
                 $dynamicMailKey = $this->mailParameters[$dynamicToEmail[CustomMailParameters::TO_EMAIL_PARAMETER]];
                 $enumKey = implode('_', array_map('strtoupper', preg_split('/(?=[A-Z])/', $dynamicMailKey)));
-                $this->mailTo = (new \\ReflectionClassConstant(self::CUSTOM_MAILS[$this->currentMail][CustomMailParameters::DYNAMIC_TO_EMAIL][CustomMailParameters::TO_EMAIL_ENUM_CLASS_PARAMETER], $enumKey))->getValue();
+                
+                $dynamicMailValue = (new \\ReflectionClassConstant(self::CUSTOM_MAILS[$this->currentMail][CustomMailParameters::DYNAMIC_TO_EMAIL][CustomMailParameters::TO_EMAIL_ENUM_CLASS_PARAMETER], $enumKey))->getValue();
+                if(is_int(strpos($dynamicMailValue, ';'))){
+                    $dynamicMailValues = explode(';', $dynamicMailValue);
+                    $this->mailTo = array_shift($dynamicMailValues);
+                    $this->setCc($dynamicMailValues);
+                    
+                }else {
+                    $this->mailTo = $dynamicMailValue;
+                }
+
             }
         }
 
@@ -217,6 +238,17 @@ class DynamicCustomMail {
         if (is_null($this->mailTo)) {
             throw new CommerceException("To Parameter is required");
         }
+    }
+
+    /**
+     * Sets the send mail cc parameter for this parameters group.
+     *
+     * @param array $cc
+     *
+     * @return void
+     */
+    private function setCc(array $cc): void {
+        $this->cc = $cc;
     }
 
     /**
@@ -521,6 +553,7 @@ class SendMailController extends FWKSendMailController {
      */
     protected function initializeAppliedParameters(): void {
         parent::initializeAppliedParameters();
+        $this->customFormSendMailParametersGroup->setCc($this->dynamicCustomMails->getCc());
 
         // true o false para habilitar o deshabilitar el uso de stripTags a nivel de todos los parámetros del ParametersGroup
         $this->customFormSendMailParametersGroup->setFormattedDataOutputWithStripTags(false);
