@@ -64,7 +64,7 @@ const controllerPaths = [
   },
   {
     label: "Util",
-    detail: "Controllers\\User\\Internal",
+    detail: "Controllers\\Util\\Internal",
   },
 ];
 
