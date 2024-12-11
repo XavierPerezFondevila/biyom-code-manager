@@ -1,5 +1,10 @@
 # Change Log
 
+## [1.5.7] - 11-12-2024
+
+- Add cc to dynamic mails
+- Fix "Utils" path in create internal controller feature
+
 ## [1.5.6] - 05-02-2024
 
 - Fix Mails script generation

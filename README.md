@@ -35,7 +35,11 @@ Some mutation observers may not be cleared at all in `Import Document Script` an
 
 ## Release Notes
 
-## [1.5.6] - 05-02-2024
+## 1.5.7 - 11/12/2024
+- Add cc to dynamic mails
+- Fix "Utils" path in create internal controller feature
+
+## 1.5.6 - 05/02/2024
 - Fix Mails script generation
 - Update dynamic forms (v1.0.1)
 
