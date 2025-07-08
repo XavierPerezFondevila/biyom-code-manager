@@ -35,6 +35,9 @@ Some mutation observers may not be cleared at all in `Import Document Script` an
 
 ## Release Notes
 
+## 1.5.9 - 08/07/2025
+- Add compatibility with ubuntu/docker - only createInternal
+
 ## 1.5.8 - 07/07/2025
 - Add compatibility with ubuntu/docker system
 - Deactivate unused "import library"

@@ -1,4 +1,5 @@
 import * as fs from "fs";
+import * as path from "path";
 
 export function setFileReplaces(
   filePath: string,
@@ -48,7 +49,7 @@ export function customWriteFile(
     if (err) {
       return err;
     }
-    fs.writeFileSync(dirPath + `\\${fileName}`, fileContent);
+    fs.writeFileSync(path.join(dirPath, fileName), fileContent);
   });
 }
 

@@ -9,6 +9,7 @@ import * as checkLanguageLabels from './checkLanguageLabels/main';
 import * as createMailsScript from './createMailsScript/main';
 
 import * as fs from 'fs';
+import * as path from 'path';
 import { BeyomActionsProvider} from './treeDataProvider/dataProvider';
 const wsPath = vscode.workspace.workspaceFolders;
 export const repoPath = getRepositoryPath();
@@ -66,7 +67,7 @@ function getRepositoryPath(): string {
 		return '';
 	}
 
-	return wsPath[0].uri.fsPath + '\\' + repoDirectoryName[0];
+	return path.join(wsPath[0].uri.fsPath, repoDirectoryName[0]);
 }
 
 function getFWKPath(): string {
@@ -82,7 +83,7 @@ function getFWKPath(): string {
 		return '';
 	}
 
-	return wsPath[0].uri.fsPath + '\\' + frameworkDirectoryName[0];
+	return  path.join(wsPath[0].uri.fsPath, frameworkDirectoryName[0]);
 }
 
 // This method is called when your extension is deactivated

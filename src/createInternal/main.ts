@@ -1,4 +1,5 @@
 import * as vscode from "vscode";
+import * as path from "path";
 import * as fs from "fs";
 import * as controllerApi from './files/controller';
 import * as internalFilesApi from './files/internalFiles';
@@ -32,39 +33,39 @@ const controllerTypes = [
 const controllerPaths = [
   {
     label: "Banner",
-    detail: "Controllers\\Banner\\Internal",
+    detail:  path.join("Controllers","Banner","Internal"),
   },
   {
     label: "Basket",
-    detail: "Controllers\\Basket\\Internal",
+    detail: path.join("Controllers","Basket", "Internal"),
   },
   {
     label: "Blog",
-    detail: "Controllers\\Blog\\Internal",
+    detail: path.join("Controllers","Blog","Internal"),
   },
   {
     label: "Checkout",
-    detail: "Controllers\\Checkout\\Internal",
+    detail: path.join("Controllers","Checkout","Internal"),
   },
   {
     label: "Page",
-    detail: "Controllers\\Page\\Internal",
+    detail: path.join("Controllers","Page","Internal"),
   },
   {
     label: "Product",
-    detail: "Controllers\\Product\\Internal",
+    detail: path.join("Controllers","Product","Internal"),
   },
   {
     label: "Resources",
-    detail: "Controllers\\Resources\\Internal",
+    detail: path.join("Controllers","Resources","Internal"),
   },
   {
     label: "User",
-    detail: "Controllers\\User\\Internal",
+    detail: path.join("Controllers","User","Internal"),
   },
   {
     label: "Util",
-    detail: "Controllers\\Util\\Internal",
+    detail: path.join("Controllers","Util","Internal"),
   },
 ];
 
@@ -79,9 +80,11 @@ export async function init() {
     return console.log("esDeFront");
   }
 
+  
+  const controllerPath = path.join(controllerData.repoPath, "src", controllerData.path.detail, controllerData.name + "Controller.php");
+
   fs.readFile(
-    controllerData.repoPath +
-      `\\src\\${controllerData.path.detail}\\${controllerData.name}Controller.php`,
+    controllerPath,
     function read(err) {
       if (err) {
         controllerApi.createController(controllerData);

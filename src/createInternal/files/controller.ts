@@ -1,5 +1,6 @@
 let controllerData: any = {};
 import * as vscode from 'vscode';
+import * as path from 'path';
 import * as utils from '../utils/utils';
 
 export function createController(data: any){
@@ -9,11 +10,12 @@ export function createController(data: any){
 
 function createFile() {
 
+    const customFileControllerPath = controllerData.path.detail.replaceAll('/', '\\');
 	// custom functions
 	let controllerTemplate =
 		`<?php
 
-namespace SITE\\${controllerData.path.detail};
+namespace SITE\\${customFileControllerPath};
 
 use FWK\\Core\\Controllers\\${controllerData.type.detail};
 use FWK\\Core\\FilterInput\\FilterInputHandler;
@@ -27,7 +29,7 @@ use SDK\\Core\\Resources\\BatchRequests;`;
  *
  * @see ${controllerData.type.detail}
  *
- * @package SITE\\${controllerData.path.detail}
+ * @package SITE\\${customFileControllerPath}
  */
 class ${controllerData.name}Controller extends ${controllerData.type.detail} {
 
@@ -82,11 +84,13 @@ class ${controllerData.name}Controller extends ${controllerData.type.detail} {
     }
 }
 `;
-	utils.customWriteFile(controllerData.repoPath + `\\src\\${controllerData.path.detail}`, `${controllerData.name}Controller.php`, controllerTemplate);
-	vscode.commands.executeCommand('vscode.open', vscode.Uri.file(controllerData.repoPath + `\\src\\${controllerData.path.detail}\\${controllerData.name}Controller.php`));
+    const fileUrl = path.join(controllerData.repoPath, 'src', controllerData.path.detail);
+	utils.customWriteFile(fileUrl, `${controllerData.name}Controller.php`, controllerTemplate);
+	vscode.commands.executeCommand('vscode.open', vscode.Uri.file(path.join(controllerData.repoPath, "src", controllerData.path.detail, controllerData.name + 'Controller.php')));
 	if (controllerData.type.detail === 'BaseHtmlController') {
 		let htmlDefaultFile = `{%- block content -%}\n{%- endblock content -%}`;
-		utils.customWriteFile(controllerData.repoPath + `\\themes\\default\\Responsive\\Content\\${controllerData.path.label}\\Internal\\${controllerData.name}`, 'default.html.twig', htmlDefaultFile);
+        let htmlDefaultFilePath = path.join(controllerData.repoPath, 'themes', 'default', 'Responsive', 'Content', controllerData.path.label, 'Internal', controllerData.name);
+		utils.customWriteFile(htmlDefaultFilePath, 'default.html.twig', htmlDefaultFile);
 	}
 
 }

@@ -1,5 +1,7 @@
 let controllerData: any = {};
 import * as utils from "../utils/utils";
+import * as path from "path";
+import * as vscode from "vscode";
 
 export function createFiles(data: any) {
   controllerData = data;
@@ -11,9 +13,7 @@ export function createFiles(data: any) {
 function setInternalEnum() {
   let snakeControllerName = utils.camelToSnakeCase(controllerData.name);
   try {
-    let filePath =
-      controllerData.repoPath +
-      `\\src\\Enums\\RouteTypes\\Internal${controllerData.path.label}.php`;
+    let filePath = path.join(controllerData.repoPath, "src", "Enums", "RouteTypes", `Internal${controllerData.path.label}.php`);
     let fileReplaces = [
       {
         indexQuantity: 2,
@@ -39,8 +39,9 @@ abstract class ${internalName} extends FWK${internalName} {
     public const ${snakeControllerName} = '${controllerData.path.label.toUpperCase()}_INTERNAL_${snakeControllerName}';
 }
 `;
+    const routeTypePath = path.join(controllerData.repoPath, "src", "Enums", "RouteTypes");
     utils.customWriteFile(
-      controllerData.repoPath + "\\src\\Enums\\RouteTypes",
+      routeTypePath,
       `${internalName}.php`,
       internalPathTemplate
     );
@@ -49,8 +50,7 @@ abstract class ${internalName} extends FWK${internalName} {
 
 function setRoutePath() {
   let camelControllerName = utils.camelToSnakeCase(controllerData.name);
-  let filePath =
-    controllerData.repoPath + `\\src\\Core\\Resources\\RoutePaths.php`;
+  let filePath = path.join(controllerData.repoPath, "src", "Core", "Resources", "RoutePaths.php");
   let fileReplaces = [
     {
       indexQuantity: 0,
@@ -68,8 +68,7 @@ function setRoutePath() {
 }
 
 function setCacheControl() {
-  let filePath =
-    controllerData.repoPath + `\\src\\Core\\Resources\\CacheControl.php`;
+  let filePath = path.join(controllerData.repoPath, "src", "Core", "Resources", "CacheControl.php");
   let fileReplaces = [
     {
       indexQuantity: -1,
