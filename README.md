@@ -18,7 +18,7 @@ This is the "biyom-code-manager" a giga-chad extension intended for saving your 
 
 ## Requirements
 
-- Your VScode workspace must have repo-xx folder.
+- Your VScode workspace must have repo-xx/www folder.
 - Internal controller name must be camel cased.
 - Your `settings.json` file must have these config variables:
   - `biyom-code-manager.accessToken`
@@ -34,6 +34,10 @@ This is the "biyom-code-manager" a giga-chad extension intended for saving your 
 Some mutation observers may not be cleared at all in `Import Document Script` and `create document script` commands, refresh the page to make sure they are removed :P
 
 ## Release Notes
+
+## 1.5.8 - 07/07/2025
+- Add compatibility with ubuntu/docker system
+- Deactivate unused "import library"
 
 ## 1.5.7 - 11/12/2024
 - Add cc to dynamic mails

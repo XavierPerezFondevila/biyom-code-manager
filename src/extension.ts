@@ -29,9 +29,6 @@ export function activate(context: vscode.ExtensionContext) {
 		vscode.commands.registerCommand('biyom-code-manager.importDynamicForms', () => {
 			dynamicForms.init();
 		}),
-		vscode.commands.registerCommand('biyom-code-manager.importLibrary', () => {
-			dynamicLibraries.init();
-		}),
 		vscode.commands.registerCommand('biyom-code-manager.checkLanguageLabels', () => {
 			checkLanguageLabels.init();
 		}),
@@ -61,7 +58,9 @@ function getRepositoryPath(): string {
 		vscode.window.showInformationMessage('Repository directory not found in workspace!');
 		return '';
 	}
-	let repoDirectoryName = fs.readdirSync(wsPath[0].uri.fsPath).filter(dirName => dirName.includes('repo-'));
+	let repoDirectoryName = fs.readdirSync(wsPath[0].uri.fsPath)
+  .filter((dirName: string) => dirName.includes('repo-') || dirName.includes('www'));
+
 	if (!repoDirectoryName.length) {
 		vscode.window.showInformationMessage('Repository directory not found in workspace!');
 		return '';
@@ -75,7 +74,9 @@ function getFWKPath(): string {
 		vscode.window.showInformationMessage('FWK directory not found in workspace!');
 		return '';
 	}
-	let frameworkDirectoryName = fs.readdirSync(wsPath[0].uri.fsPath).filter(dirName => dirName.includes('framework-php'));
+	let frameworkDirectoryName = fs.readdirSync(wsPath[0].uri.fsPath)
+  .filter((dirName: string) => dirName.includes('framework-php') || dirName.includes('fwk'));
+
 	if (!frameworkDirectoryName.length) {
 		vscode.window.showInformationMessage('FWK directory not found in workspace!');
 		return '';

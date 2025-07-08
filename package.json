@@ -9,7 +9,7 @@
     "url": "https://github.com/XavierPerezFondevila/biyom-code-manager"
   },
   "icon": "images/appIcon.png",
-  "version": "1.5.7",
+  "version": "1.5.8",
   "engines": {
     "vscode": "^1.74.0"
   },
@@ -77,13 +77,6 @@
         "title": "Import Dynamic Forms",
         "description": "Afegeix llibreria per crear sendMailForms",
         "iconPath": "biyom-code-manager-importDynamicForms.svg"
-      },
-      {
-        "command": "biyom-code-manager.importLibrary",
-        "view": "beyomCodingView",
-        "title": "Import Library",
-        "description": "Importa llibreria github trilogi-developers",
-        "iconPath": "github.svg"
       },
       {
         "command": "biyom-code-manager.checkLanguageLabels",
